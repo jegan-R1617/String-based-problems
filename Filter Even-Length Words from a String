@@ -52,7 +52,7 @@ public class Main {
 		    }
 		    if( (str.charAt(i)==' '||i==str.length()-1) && (count>0) ){
 		    	if(count%2==0) {
-		    		System.out.print(temp+" ");
+		    		System.out.print(temp.toString()+" ");
 		    	}
 		    	    count=0;
 		    	    temp.setLength(0);
