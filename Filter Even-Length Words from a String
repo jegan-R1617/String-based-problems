@@ -1,0 +1,88 @@
+Description:
+You need to write a Java program that reads a string from the user and processes it to print only those words that have an even number of characters. 
+The program should handle cases where the input string contains multiple consecutive spaces between words. 
+It should correctly identify and process each word, ignoring extra spaces, and only output words with an even number of characters.
+
+solution:
+********************************************************************************************************************************************************
+Approch 1:
+
+import java.util.Scanner;
+public class Main {
+  public static void main(String[]args) {
+	  Scanner sc=new Scanner(System.in);
+	   String str=sc.nextLine();
+	   String temp="";
+	   int count=0;
+	   for(int i=0;i<str.length();i++) {
+		    if(str.charAt(i)!=' ') {
+		    	temp+=str.charAt(i);
+		    	count++;
+		    }
+		    if( (str.charAt(i)==' '||i==str.length()-1) && (count>0)){
+		    	if(count%2==0) {
+		    		System.out.print(temp+" ");
+		    	}
+		    	    count=0;
+		    	    temp="";
+		    }
+	   }
+  }
+}
+
+Note:
+Using String for temp in Java can be less efficient because strings are immutable, meaning a new string is created every time you concatenate.
+You could use StringBuilder instead for better performance, especially with larger inputs.
+
+******************************************************************************************************************************************************************
+Approch 2:
+
+
+import java.util.Scanner;
+public class Main {
+  public static void main(String[]args) {
+	  Scanner sc=new Scanner(System.in);
+	   String str=sc.nextLine();
+	   int count=0;
+	   StringBuffer temp=new StringBuffer();
+	   for(int i=0;i<str.length();i++) {
+		    if(str.charAt(i)!=' ') {
+		    	temp.append(str.charAt(i));
+		    	count++;
+		    }
+		    if( (str.charAt(i)==' '||i==str.length()-1) && (count>0) ){
+		    	if(count%2==0) {
+		    		System.out.print(temp+" ");
+		    	}
+		    	    count=0;
+		    	    temp.setLength(0);
+		    }
+	   }
+  }
+}
+Note:
+Efficiency: Using StringBuffer (or StringBuilder) is generally more efficient than using String for string concatenation in loops because StringBuffer is mutable.
+Edge Cases: The code correctly handles multiple consecutive spaces between words, spaces at the beginning or end of the string, and ensures that only words with an even number of characters are printed.
+
+
+********************************************************************************************************************************************************************************
+Approch 3:
+
+import java.util.Scanner;
+public class Main {
+  public static void main(String[]args) {
+	  Scanner sc=new Scanner(System.in);
+	   String str=sc.nextLine();
+	   String arr[]=str.split("\\s+");
+	   for(String s:arr){
+	       if(s.length()%2==0){
+	           System.out.print(s+" ");
+	       }
+	   }
+  }
+}
+
+Note:
+Efficiency: This approach is efficient and concise, as it leverages Java's split method to handle spaces and directly iterates through the resulting words.
+Readability: The code is easy to read and understand, making it a good choice for this problem.
+Edge Cases: It correctly handles multiple spaces, leading or trailing spaces, and ensures that only words with an even number of characters are printed.
